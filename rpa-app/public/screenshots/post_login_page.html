@@ -1,0 +1,780 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="ja"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/destination?id=G-VBB3D2C7FK&amp;cx=c&amp;gtm=4e66u1"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-WSTBXK"></script><script type="text/javascript" src="/web/jp/js/jquery-1.7.1.min.js"></script>
+
+
+<script type="text/javascript" src="../wicket/resource/org.apache.wicket.markup.html.WicketEventReference/wicket-event-ver-B0439F858745C84EA46792F9AC42B6CF.js"></script>
+<script type="text/javascript" src="../wicket/resource/org.apache.wicket.ajax.WicketAjaxReference/wicket-ajax-ver-6D72511079A68CC58F36C477F945DB85.js"></script>
+<script type="text/javascript" id="wicket-ajax-base-url">
+/*<![CDATA[*/
+Wicket.Ajax.baseUrl="mypage/mypage_fb.page";
+/*]]>*/
+</script>
+<script type="text/javascript">
+/*<![CDATA[*/
+function openDeliveryList(dt){
+   var url = "";
+    url = '/scripts/common_redirect_report_pv.page'//<!--080415 サブドメイン化に伴い追加--> 
+        + '?st=1'
+        + '&parent=0'
+        + '&selbuy=1'
+        + '&f_date=' + dt
+        + '&t_date=' + dt
+        + '&pdf_id=7';
+   url = url + '&pdate=2';
+   url = url + '&op=';
+       url = url + '&membersel=0';
+    url = url + '&dummy=a.a';
+    url = url + '&url=/employment/task/task_batch.page';//<!--080415 サブドメイン化に伴い追加--> 
+
+   openChildWindow(url, 'delivery_list', 840, 650);
+}
+function OpenSchedule_Inp(strMemberCD, intYear, intMonth, intDay, intCalendarID, intShareFlg) {
+    var url = "/employment/schedule_inp.page?membercode=" + strMemberCD +"&year=" + intYear + "&month=" + intMonth + "&day=" + intDay + "&calendarid=" + intCalendarID + "&share_info=" + intShareFlg;
+    openModal(url);
+}
+function DataReLoad() {
+    location.reload();
+}
+var win_handle;
+var win_open = false;
+function CloseWin(){
+   if (!win_open) return;
+   if ( win_handle.closed == false ){
+       win_handle.close();
+   }
+}
+function PageChange(qstr){
+   location.href = qstr;
+   ShowNowLoading();
+}
+function mfSendForm(pintType){
+   var f;
+   ShowNowLoading();
+   switch (pintType) {
+   case 0:
+       f =document.form_myCat;
+       break;
+   default:
+       f =document.form_myCat;
+       break;
+   }
+   f.submit();
+   ShowNowLoading();
+   return true;
+}
+   var glngMP2JWATCH_ServerDateTime = Date.parse('2026/07/03 18:36:48');
+   var glngMP2JWATCH_ClientDateTime = 0;
+   var glngMP2JWATCH_DateTimeDiff = 0;
+   if (glngMP2JWATCH_ClientDateTime == 0) {
+       var gobjDateWork = new Date();
+       glngMP2JWATCH_ClientDateTime = gobjDateWork.getTime();
+       glngMP2JWATCH_DateTimeDiff = glngMP2JWATCH_ServerDateTime
+           - glngMP2JWATCH_ClientDateTime;
+   }
+   function createWatchUpdate() {
+       var warrWeekTbl = new Array("日", "月", "火", "水", "木", "金", "土");
+       var wobjDate    = new Date();
+       wobjDate.setTime(wobjDate.getTime() + glngMP2JWATCH_DateTimeDiff);  //サーバーとクライアントのタイム差を埋める
+       var wintMonth   = wobjDate.getMonth()+1;
+       var wintDay     = wobjDate.getDate();
+       var wstrWeek    = warrWeekTbl[wobjDate.getDay()];
+       var wintHour    = wobjDate.getHours();
+       var wintMinute  = wobjDate.getMinutes();
+       var wstrTime    = "";
+       var wlngDateTime= 0;
+       //時:分:秒が1桁ならば、2桁に変換します。
+       if (wintHour   < 10) { wintHour   = "0" + wintHour;   }
+       if (wintMinute < 10) { wintMinute = "0" + wintMinute; }
+       //表示時刻設定
+       wstrTime = wintMonth + '月' + wintDay + '日(' + wstrWeek + ') ' + wintHour + ':' + wintMinute 
+       wlngDateTime = Date.parse(wstrTime);
+       if(!! document.getElementById('timer1')){           eval("document.getElementById('timer1').innerHTML = wstrTime");        }
+       setTimeout(createWatchUpdate, 500);
+   }
+
+/*]]>*/
+</script>
+<script type="text/javascript">
+/*<![CDATA[*/
+function openGuideModal() { 
+} 
+function openEsLoginFinishedModal() { 
+} 
+
+/*]]>*/
+</script>
+<link rel="stylesheet" type="text/css" href="/web/jp/css/mypage.css?1241">
+<link rel="stylesheet" type="text/css" href="/web/jp/css/mypage-promo.css?1241">
+<link rel="stylesheet" type="text/css" href="/web/jp/js/jquery-ui-1.8.18/jquery-ui.css?1241">
+<title>Info Mart Web Site</title>
+<script type="text/javascript" src="/web/jp/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/web/jp/js/jquery.bgiframe.js"></script>
+<script type="text/javascript" src="/web/jp/js/jquery.mousewheel.js"></script>
+<link rel="stylesheet" type="text/css" href="/web/jp/css/common.css?1241" media="all">
+<link rel="stylesheet" type="text/css" href="/web/jp/css/old_parts.css?1241" media="all">
+<script type="text/javascript">var memberRole="B";</script>
+
+                                <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="8P3RQ-N8RAA-W9VSL-RYXZY-R5J6P",function(){function e(){if(!i){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,o.parentNode.appendChild(e),i=!0}}function t(e){i=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(o.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",o.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"8P3RQ-N8RAA-W9VSL-RYXZY-R5J6P";var o=document.currentScript||document.getElementsByTagName("script")[0],i=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!i)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),o.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="aek2zeqxinfqs2shqkya-f-928746436-clientnsv4-s.akamaihd.net",o="false"=="true"?2:1,i={"ak.v":"41","ak.cp":"1170587","ak.ai":parseInt("700084",10),"ak.ol":"0","ak.cr":31,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"270b968","ak.r":39898,"ak.a2":n,"ak.m":"a","ak.n":"essl","ak.cport":52851,"ak.gh":"23.67.74.189","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1783071408","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==iTnmFcshX1osdT+6giFIRDYdfwDwiNItn+KigbjT5ldie3HBMg72n+G59WCT+mZK9oBy+sgQ6tv0Poe2Lu+2dHyJZWFRjArgSgE5m4H09RAP2h4D9pHDadVKd8GNuQ9rVfm4/ICwc7y7bEYzVADlxoG3sbpwSRUuGPNzg54Y5O53ZCl9dUWZiKakE7jEVmfwI6+FWWHnYKTBnK/qUyRxzI4RnsYf+oA4n6EmyA7BGhs77Fo+XI4mCoqj51BceOJcX3qzbmOWZNsuEhzObTZo7k+NKxfSgqrYRXtJjs+RGJqz1P6CYqVvYz4cgpaBUTVCphglJppW8gbepeajmJDE8Te8GkYtV9FsO5/UZgAqG6ZUXEihfzw4uS9ZuTjP6skTO67I3ndSxSGGInDWzs3zoYaWYIHJ4KW0Qj9H7EeqTeA=","ak.pv":"6","ak.dpoabenc":"","ak.tf":o};if(""!==t)i["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))i["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(i)},rv:function(){var e=["ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:i,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script><link href="https://s.go-mpulse.net/boomerang/8P3RQ-N8RAA-W9VSL-RYXZY-R5J6P" rel="preload" as="script"><script id="boomr-scr-as" src="https://s.go-mpulse.net/boomerang/8P3RQ-N8RAA-W9VSL-RYXZY-R5J6P" async=""></script></head>
+<body class="page" onload="createWatchUpdate();" onunload="CloseWin();">
+<!-- <body class="page"  onLoad="createWatchUpdate();" onUnload="CloseWin();"> -->
+<div id="XX_ID_LOADING" style="display: none;"><div class="loading-page"></div><p class="loading-tx">読込み中です。しばらくお待ちください。</p></div>
+<div id="XX_ID_CONTENT" style="">
+<script language="JavaScript">
+/*<![CDATA[*/
+jQuery.event.add(window, 'load', function(){
+    $('#XX_ID_LOADING').hide();
+    $('#XX_ID_CONTENT').show();
+});
+/*]]>*/
+</script>
+
+<div class="kaite">
+<div id="detailPanel">
+<div id="headerMypage">
+
+<link rel="stylesheet" type="text/css" href="/web/jp/css/header.css?1241">
+<script type="text/javascript" src="/web/jp/js/headernav.js?1241"></script>
+<span id="lblHeaderScript"><script type="text/javascript">
+  $(function() {
+    $('.usr').hover(function() {
+      $(this).children('i').children('.usr-pulldown').css('display', 'block');
+    }, function() {
+      $(this).children('i').children('.usr-pulldown').css('display', 'none');
+    });
+    if (typeof $('.menu #show_hdr_nav_tools2').length === 'undefined' || $('.menu #show_hdr_nav_tools2').length <= 0) {
+      $('header').addClass('nosso');
+    }
+    $('#lblHeaderCompanyName').attr('title', $('#lblHeaderCompanyName').text());
+    $('#lblHeaderUserName').attr('title', $('#lblHeaderUserName').text());
+  });
+</script></span>
+
+
+<header class="ESP605 nosso">
+<div class="header-wrap clr">
+<div class="hdr" id="pagetop">
+<p class="h1">
+
+<img src="/web/jp/images/logo-145x24.gif" alt="BtoBプラットフォーム">
+
+
+<a id="platFormUrl" href="#">
+<img class="_logo" src="/web/jp/images/logo-asp-mini.gif">
+
+</a>
+
+</p>
+
+<ul class="hdr_nav_r">
+
+<li class="usr login">
+<i>
+<span id="lblHeaderCompanyName" title="ＳｈｉｎｎｏｏＤｅｌｉｃａ　本厚木店（シンノオＦＳ）">ＳｈｉｎｎｏｏＤｅｌｉｃａ　本厚木店（シンノオＦＳ）</span>
+<span style="display:none;" id="headerCompanyName">ＳｈｉｎｎｏｏＤｅｌｉｃａ　本厚木店（シンノオＦＳ）</span><br>
+
+
+<span id="lblHeaderUserName" title=""></span>
+
+
+
+</i>
+</li>
+
+
+<li class="faq"><span class="tooltip-wrap"><a href="/scripts/qa_op_list.page?pmode=read" class="open-tooltip" target="_blank" data-tooltip="よくあるご質問" id="lnkFrequentlyAskedQuestion" onclick=""><i class="ic-help"></i></a></span></li>
+<li class="logout"><span class="tooltip-wrap"><a href="/scripts/logout.page" class="open-tooltip" data-tooltip="ログアウト" id="lnkLoginLogoutIc" onclick="if (confirm(&quot;次回、再ログインが必要となりますが本当にログアウトしてよろしいですか？\n&quot;) == false) {return false;}"><i class="ic-logout"></i></a></span></li>
+</ul>
+</div>
+</div>
+</header>
+
+       
+
+<div class="header-wrap gnvmenu-flat" id="divHdrMain">
+<ul class="global-navi" id="innerFC">
+<li id="gnv-myp"><a title="マイページ" id="lnkMyPage" href="/scripts/mode.page?cs=0" class="current"><span id="lblMyPage">マイページ</span></a></li>
+<li id="gnv-mstr-k2"><a title="発注リスト" id="lnkLog" href="/trade/order_my_catalog.page"><span id="lblLog">発注リスト</span></a></li>
+
+
+<li id="gnv-set"><a title="設定・登録" id="lnkTab" href="/scripts/mode.page?cs=2"><span id="lblTab">設定・登録</span></a></li>
+<li id="gnv-guid"><a title="ご利用ガイド" id="lnkGuide" href="/guide/index.pagex"><span id="lblGuide">ご利用ガイド</span></a></li>
+<li id="gnv-cont"><a href="/guide/support.pagex" title="お問い合わせ"><span>お問い合わせ</span></a></li>
+<!--<li wicket:id="FoodsCh" ><a wicket:id="lnkFoodsCh" title="フーズチャネル"><span>フーズチャネル</span></a></li>-->
+<li class="b2b-ch" id="menuB2bch"><a title="業界チャネル" id="lnkB2bch" href="https://b2b-ch.infomart.co.jp" target="_blank"><span>業界チャネル</span></a></li>
+
+</ul>
+
+</div>
+
+
+ 
+
+
+
+<script language="JavaScript" src="/web/jp/js/header_common.js?1241"></script>
+
+
+
+
+</div>
+
+
+<div class="contents">
+<a name="pagetop"></a>
+<form name="form1" id="form1" method="get" action="/mypage/mypage_fb.page">
+<div class="myp-main">
+
+<div class="clr">
+
+<div class="myp-c">
+
+
+
+<div id="memberInfoDiv">
+<span id="memberInfo"></span>
+</div>
+<div class="myp-todo">
+<table class="myp-todo-table">
+<thead>
+<tr>
+<th class="todo-list-th">
+<div class="w80 left">
+<img class="mt8" src="/web/jp/images/myp-ti-today.gif" alt="本日の業務" height="14" width="76">
+</div>
+<div class="todo-list-th date left">
+<span id="timer1">7月3日(金) 18:36</span>
+<span>
+ <span class="mr5"><img src="/web/jp/images/ic-weather12.gif" alt="本日の業務" width="37" height="20"></span>
+ <span class="list-mark-w"><a href="#" onclick="openModal('/scripts/weekly_weather.page');return false">週間天気</a></span>
+</span>
+</div>
+</th>
+<th class="todo-list-th bb-1px halign-r">
+<div class="myp-selectmember">
+<div class="wide">
+<div id="mv_dropdown">
+<div id="v_dropdown2">
+<label for="f1-01">業務担当</label>
+<select class="cstm-select w100" id="f1-01" onchange="ShowNowLoading(); document.form1.submit();" name="op_code">
+<option value="00">全ての担当者</option>
+<option value="01">佐々木恵美子</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr id="todayBusinessMessageDataTR">
+<td colspan="2" class="todo-list-td" id="todayBusinessMessageRow"><div class="list-mark-y"> <a href="#" onclick="PageChange('/trade/receipt_all.page?perusal=0&amp;f_date=2026/07/03&amp;t_date=2026/07/03&amp;membersel=0&amp;TradeState=60&amp;op=00'); return false;">本日の納品予定が<span class="tx-attention">10件</span>あります。検品後、受領処理を行って下さい。</a></div></td>
+</tr>
+</tbody>
+</table>
+<table class="myp-todo-table">
+<thead>
+<tr>
+<th class="todo-list-th">
+<img src="/web/jp/images/myp-ti-task.gif" alt="残作業" height="14" width="45">
+</th>
+<th class="todo-list-th"> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2" class="todo-list-td"><div class="list-mark-y"><img src="/web/jp/images/ic-caution02.gif" width="18" height="15" class="th-img"><a href="#" onclick="PageChange('/trade/receipt_all.page?perusal=0&amp;f_date=2026/06/01&amp;t_date=2026/07/02&amp;membersel=0&amp;op=00'); return false;">当月（前日まで）の未処理伝票が<span class="tx-attention">14件</span>あります。処理を行って下さい。</a></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- #68759 マイページ右カラムの改修 insert start -->
+<div class="w550">
+<div class="myp-todo">
+
+</div>
+</div>
+
+<div id="iframeCustomerInfoInit" style="display:none"></div>
+<div id="iframeCustomerInfoDisp" style="display:none"></div>
+
+
+<div class="myp-parts-row clr">
+<div class="myp-parts myp-parts-c">
+<div class="myp-tit-550">
+<span class="ma5 right">&nbsp;</span>
+<img src="/web/jp/images/myp-ti-mail.gif" alt="メール" height="28" width="75">
+</div>
+<div class="myp-contents-550">
+<div class="pa10"><table class="myp-parts-bts"><tbody>    <tr class="first-row">        <td class="first-cell" colspan="2">            <a href="#" class="bt-myp-parts-large myp-mail-inbox" onclick="PageChange('/buyer/mail/inbox.page'); return false;"><span class="bt-label-myp-parts-large clr"> <span class="bt-myp-parts-large-hidetxt">受信トレイ</span></span></a><a href="#" class="midoku" onclick="PageChange('/buyer/mail/inbox.page?status=New'); return false;"><span class="showtxt">未読：<strong class="tx-red">2件</strong></span></a>        </td>        <td>            <a href="#" class="bt-myp-parts-large myp-mail-sent" onclick="PageChange('/buyer/mail/sent.page'); return false;"><span class="bt-label-myp-parts-large"><span class="bt-myp-parts-large-hidetxt">送信トレイ</span></span></a>        </td>        <td>            <a href="#" class="bt-myp-parts-large myp-mail-new" onclick="PageChange('/mail/msg_send_all.page?prev=mypage'); return false;"><span class="bt-label-myp-parts-large"><span class="bt-myp-parts-large-hidetxt">新規作成</span></span></a>        </td>    </tr></tbody></table></div>
+</div>
+<div class="myp-ftr-550"></div>
+</div>
+
+</div>
+
+
+
+
+
+<div class="myp-parts-row clr mb10">
+<div class="myp-parts-table myp-parts-hdr myp-tit-550">
+<span class="bullet-ltrl-triangle ma5 right"><a href="/employment/daily_summary_b.page">日次合計表</a></span>
+<img src="/web/jp/images/myp-ti-amount.gif" alt="取引金額" height="28" width="94">
+<span class="dispay-inline-block pa6"><span>7月 1日</span>～<span>7月 31日</span> 当月分</span>
+</div>
+<div class="myp-contents-550">
+<div class="pa8">
+<table class="myp-parts-sum-trad">
+<tbody>
+<tr>
+<th class="myp-parts-sum-trad-th">仕入実績</th>
+<td class="myp-parts-sum-trad-td">
+<span class="label">昨日</span>
+<span class="price">¥0</span>
+</td>
+<td class="myp-parts-sum-trad-td">
+<span class="label">本日</span>
+<span class="price">¥0</span>
+</td>
+<td class="myp-parts-sum-trad-td">
+<span class="label">当月</span>
+<span class="price">¥0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="myp-ftr-550"></div>
+</div>
+
+
+<!--div class="myp-parts-row mb10">
+<a href="/guide/tax/index.asp" target="_blank"><img src="/web/jp/mypage/images_banner/bnr_550x65_20140212.gif" width="550" height="84" alt="消費税改正に伴うシステム対応について"></a>
+</div-->
+
+<!--div class="myp-smart mb10" wicket:id="tenchoMenutitle">
+<div class="myp-parts-table myp-parts-hdr myp-tit-550">
+<img width="123" height="28" alt="スマ for 店長" src="/web/jp/images/myp-ti-smart.gif" class="valign-t">
+</div>
+<div class="myp-contents-550">
+<div class="pa8">
+<table>
+<tbody>
+<tr>
+<th class="pt5 pr10">
+<img width="50" height="50" alt="QRコード" src="/web/jp/images/myp-ti-smart-qr.gif" class="ml10">
+</th>
+<td class="pt10">
+<img width="235" height="38" alt="" src="/web/jp/images/myp-ti-smart-mark.gif">
+</td>
+<td>
+<img width="54" height="57" alt="" src="/web/jp/images/myp-ti-smart-ic.gif">
+</td>
+<td class="smart-list-td">
+<div class="smart-mark-y">
+<a href="/promotion/tencho_manual/manual_01.page">スマ for 店長の使い方</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="myp-ftr-550"></div>
+</div-->
+
+
+<div class="myp-parts-row mb10">
+
+</div>
+<div>
+
+</div>
+<div>
+
+</div>
+
+<!-- #74247 2016/6/20 木村 move Start -->
+<div class="myp-parts-row mb10">
+<div class="myp-parts-table myp-parts-hdr myp-tit-550">
+<span class="bullet-ltrl-triangle ma5 right"><a target="blank" href="/csr/index.asp">ECO Mart活動について</a></span>
+<img src="/web/jp/images/myp-ti-ecomart.gif" alt="ECO Mart" height="28" width="75">
+<span class="dispay-inline-block pa6">書面の電子化により地球資源の保全へとつながります。</span>
+</div>
+<div class="myp-contents-550">
+<table class="myp-parts-sum-smpl">
+<tbody>
+<tr>
+<th class="myp-parts-sum-smpl-th small">更新日：<span>2026年7月3日（金）</span></th>
+<th class="myp-parts-sum-smpl-th small">削減伝票枚数</th>
+<th class="myp-parts-sum-smpl-th small">ECO実績</th>
+</tr>
+<tr>
+<th class="myp-parts-sum-smpl-th w170">
+<div class="myp-th-bg-top">
+<span class="myp-th-bg-bottom font-normal">貴社 今月の実績</span>
+</div>
+</th>
+<td class="myp-parts-sum-smpl-td">
+<span class="label"><img src="/web/jp/images/ic-eco-ds.gif" alt="伝票" class="mt5 mb5" height="30" width="26"></span>
+<span class="price tx-nomal">
+<span>220</span>枚<br>
+<span class="x11-small">(前日分：&nbsp;<span>209</span>枚)</span>
+</span>
+</td>
+<td class="myp-parts-sum-smpl-td">
+<span class="label"><img src="/web/jp/images/ic-eco-prs.gif" alt="実績" class="mt5 mb5" height="25" width="44"></span>
+<span class="price tx-nomal">
+<span>0.2</span>本<br>
+<span class="x11-small">(前日分：&nbsp;<span>0.2</span>本)</span>
+</span>
+</td>
+</tr>
+<tr>
+<th class="myp-parts-sum-smpl-th no-bd-b w170">
+<div class="myp-th-bg-top">
+<span class="myp-th-bg-bottom font-normal">貴社<span>2026</span>年度累計</span>
+</div>
+</th>
+<td class="myp-parts-sum-smpl-td no-bd-b">
+<span class="label"><img src="/web/jp/images/ic-eco-dl.gif" alt="伝票" class="mt5 mb5" height="30" width="26"></span>
+<span class="myp-tx-cal1">4,427</span>
+<span class="myp-tx-cal-txt">枚</span>
+</td>
+<td class="myp-parts-sum-smpl-td no-bd-b">
+<span class="label"><img src="/web/jp/images/ic-eco-prl.gif" alt="実績" class="mt5 mb5" height="25" width="44"></span>
+<span class="myp-tx-cal2">3.3</span>
+<span class="myp-tx-cal-txt">本</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="myp-ftr-550"></div>
+<p class="x-small pa5">削減伝票枚数の伝票種別（受領伝票・赤伝票受領・見積書・発注伝票・発送伝票・振替伝票）<br>A4用紙を生産するのに発生するCO2を杉の木が一年に吸収できるCO2量に換算して表しています。</p>
+</div>
+<!-- #74247 2016/6/20 木村 move End -->
+</div>
+
+<div class="myp-r">
+
+<style type="text/css">
+.startguide a:hover{
+	opacity:0.7;
+}
+</style>
+<div class="startguide mb10"><a href="/guide/startup_guide.pagex" target="_self"><img width="190" height="70" src="/web/jp/mypage/images_banner/startupguide_buyer.png"></a></div>
+
+
+<div class="myp-parts-row clr">
+<div>
+
+</div>
+<div>
+
+</div>
+
+
+<!-- #74247 対応 2016/6/22 木村 Start -->
+
+<!-- #74247 対応 2016/6/22 木村 End -->
+<div class="myp-my">
+<div class="myp-tit-190">
+<span class="bullet-ltrl-triangle ma5 right"><a href="https://foods-ch.infomart.co.jp?myp" target="_blank" id="gotoFoodschTop">TOPへ</a></span>
+
+<img width="130" height="28" alt="フーズチャネル" src="/web/jp/images/myp-ti-foodsch.gif" id="imgFoodsch">
+</div>
+<div class="myp-my-contents">
+<p class="ml5 mt5"><b></b></p>
+<!--<dl class="myp-parts-contents-rsb" wicket:id="foodsInfoWebMain">
+</dl>-->
+<label id="mypageNews"><!-- フーチャネ枠内部 start-->
+<p class="ml5"><b>【特集・連載】</b></p>
+<dl class="myp-parts-contents-rsb">
+<!--作業部分　START-->
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/trend/report/289101" target="_blank">レシートデータ・AIペルソナで、消費者の潜在需要を可視化</a></dd>
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/trend/report/288574" target="_blank">木曽路、能登地震で被災した加賀屋監修の弁当を販売</a></dd>
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/knowledge/buyer/1615342347808" target="_blank">飲食店の原価率計算方法・改善対策</a></dd>
+<!--作業部分　END-->
+</dl>
+<p class="ml5"><b>【ニュース】</b></p>
+<dl class="myp-parts-contents-rsb">
+<!--作業部分　START-->
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/news/291715" target="_blank">背徳グルメ、男女で好む食材に違い。肉、生クリームなど</a></dd>
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/news/291848" target="_blank">飲食料品の値上げ、5年連続1万品目突破へ</a></dd>
+<dd class="myp-news-dd"><a href="https://foods-ch.infomart.co.jp/news/291982" target="_blank">食材高騰によるメニュー値上げ、半数超の飲食店が実施</a></dd>
+<!--作業部分　END-->
+</dl>
+<!-- フーチャネ枠内部 end -->
+</label>
+</div>
+<div class="myp-my-ftr"> </div>
+</div>
+
+  <div id="iframeMatchingAspRightInit" style="display:none"></div>
+  <div id="iframeMatchingAspRightDisp" style="display:none"></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</form>
+
+<div id="leftmenu">
+
+<!--Left column Start-->
+<div class="myp-sub">
+<div class="myp-my">
+<div class="myp-my-hdr">
+
+
+
+
+  <img src="/web/jp/images/mym-ti.gif" alt="マイメニュー" width="98" height="20" class="title">
+  <a id="bt-config-menu" href="#" onclick="openModalUser('/scripts/my_menu_setting.page?op_code=','970','620'); return false" class="bt bt-config" target="_blank"><span class="bt-label">設定</span></a>
+
+
+
+</div>
+<div class="myp-my-contents">
+<ul class="myp-my-nv">
+
+<li><a href="/trade/order_my_catalog.page" class="mym-r-071" id="lnkTab" onclick="javascript:ShowNowLoading();">発注リスト</a></li>
+
+<li><a href="#" class="mym-inspect-tdy" id="lnkTab" onclick="javascript:openDeliveryList('2026/07/03');">検品表印刷（本日分）</a></li>
+
+<li><a href="#" class="mym-inspect-tmr" id="lnkTab" onclick="javascript:openDeliveryList('2026/07/04');">検品表印刷（翌日分）</a></li>
+
+<li><a href="/trade/receipt_all.page?op=00&amp;f_date=2026/06/01&amp;t_date=2026/07/03&amp;membersel=0&amp;start_op=00" class="mym-r-201" id="lnkTab" onclick="javascript:ShowNowLoading();">受領リスト</a></li>
+
+<li><a href="/employment/trade_calendar.page?st=&amp;selbuy=1&amp;parent=1&amp;op=" class="mym-u-tori" id="lnkTab" onclick="javascript:ShowNowLoading();">取引カレンダー</a></li>
+
+<li><a href="/trade/procurement_create.page?tid=0&amp;proc_mode=0&amp;pid=4&amp;op=" class="mym-b-051" id="lnkTab" onclick="javascript:ShowNowLoading();">仕入伝票作成</a></li>
+
+<li><a href="/trade/my_catalog_trade.page" class="mym-u-tori-iti" id="lnkTab" onclick="javascript:ShowNowLoading();">取引先管理</a></li>
+
+<li><a href="/employment/tools_menu.page" class="mym-sh-063" id="lnkTab" onclick="javascript:ShowNowLoading();">運用・分析</a></li>
+
+<li><a href="/trade/download.pagex" class="mym-u-tori-do" id="lnkTab" onclick="javascript:ShowNowLoading();">取引ダウンロード</a></li>
+
+<li><a href="/download/cat_download.pagex?exe_mode=ON" class="mym-k-kata-do" id="lnkTab" onclick="javascript:ShowNowLoading();">マスタダウンロード</a></li>
+
+<li><a href="https://www2.infomart.co.jp/menu/menumypage.page" class="mym-g-202" id="lnkTab" onclick="javascript:ShowNowLoading();">メニュー管理システム</a></li>
+
+<li><a href="/trade/buyer_estimate_hist.page?ListIndex=1" class="mym-gy-027" id="lnkTab" onclick="javascript:ShowNowLoading();">見積一覧</a></li>
+
+<li><a href="/trade/my_catalog_menu_b.page" class="mym-gy-069" id="lnkTab" onclick="javascript:ShowNowLoading();">発注マスタ管理</a></li>
+
+<!-- <li><a href="#" class="mym-u-tyu">注文確認</a></li>
+<li><a href="#" class="mym-u-ha-yo">発送予定一覧</a></li>
+<li><a href="#" class="mym-u-ha">発送</a></li>
+<li><a href="#" class="mym-u-web">Web発注なし発送</a></li>
+<li><a href="#" class="mym-u-tori">取引カレンダー</a></li>
+<li><a href="#" class="mym-u-ha-ira">発注マスタ登録依頼</a></li>
+<li><a href="#" class="mym-u-tanka">単価・単位変更依頼</a></li>
+<li><a href="#" class="mym-u-tenpo">指定店舗への登録依頼</a></li>
+<li><a href="#" class="mym-u-ha-ri">発注マスタ管理履歴</a></li>
+<li><a href="#" class="mym-u-sei">請求管理</a></li>
+<li><a href="#" class="mym-u-tori-iti">取引先一覧</a></li>
+<li><a href="#" class="mym-u-un-bun">運用管理・売上分析</a></li>
+<li><a href="#" class="mym-u-tori-do">取引ダウンロード</a></li>
+<li><a href="#" class="mym-u-tori-iti">取引ダウンロード依頼一覧</a></li>
+<li class="line-none"><a href="#" class="mym-u-gp-kan">グループ会員管理</a></li> -->
+</ul>
+</div>
+<div class="myp-my-ftr">
+</div>
+</div>
+
+<div class="myp-my" id="tenchoMenutitle">
+<div class="myp-tit-190">
+<img width="123" height="28" alt="スマ for 店長" src="/web/jp/images/myp-ti-smart.gif" class="valign-t">
+</div>
+<div class="myp-my-contents">
+<div class="pa5">
+<table class="mb5 w175">
+<tbody><tr>
+<td class="valign-m">
+<img src="/web/jp/images/myp-ti-smart-txt.gif" width="107" height="33" alt="スマートフォンでの利用はこちら">
+</td>
+<td class="halign-r valign-m"><img width="50" height="50" class="ml10 right" src="/web/jp/images/myp-ti-smart-qr.gif" alt="QRコード"></td>
+</tr>
+</tbody></table>
+<p class="small">http://www.infomart.co.jp/st/</p><p><a href="/promotion/tencho_manual/manual_01.page" class="ic ic-arr-blu06"><span class="ic-label">スマ for 店長の使い方</span></a></p>
+</div>
+</div>
+<div class="myp-my-ftr"> </div>
+</div>
+<div class="myp-hlp">
+<a class="myp-hlp-btn" href="/guide/ui.asp" onclick="javascript:ShowNowLoading();"><span>主な操作方法 初級者編</span></a>
+</div>
+
+
+
+<div>
+
+</div>
+</div>
+<!--Left column End-->
+
+</div>
+
+</div>
+<span id="footer">
+<script type="text/javascript" src="/web/jp/js/footerFixed.js?1241"></script>
+
+
+<div class="ftr-hlp-gotop" id="divPagetop">
+<a class="ic ic-arr-blu04" href="#">
+<span class="ic-label">ページトップへ</span>
+</a>
+</div>
+<footer id="footerFixed" style="top: 0px;">
+
+<div class="ftr-hlp" style="float:left;" id="divHelp">
+<div class="inner">
+<a href="/scripts/qa_op_list.page?pmode=read" class="ic ic-help-tx12" target="_blank">よくあるご質問</a>
+
+
+
+
+<iframe scrolling="no" frameborder="no" width="100%" name="footerframe" height="0px" src="https://www2.infomart.co.jp/web/jp/footer/default_asp.html?4" style="height: 30px;"></iframe>
+<script type="text/javascript">try {
+//IE8の場合、フッダーを読み込まない
+var ver = navigator.appVersion.toLowerCase();
+var isAppVerIE8 = (ver.indexOf('msie 8.') > -1);
+if (isAppVerIE8) {throw new Error('対応外ブラウザ');}
+            //画面の表示完了後、iframe内部を読み込む
+            $(window).load(function(){
+                 $('iframe[name=footerframe]')
+                    .attr('src',location.protocol+'//www2.infomart.co.jp/web/jp/footer/default_asp.html?4');
+             });
+             //ドメイン越しに、iframeの中身の高さを受け取る
+             window.addEventListener('message', receiveSize, false);
+             function receiveSize(e) {
+                    if (e.origin === location.protocol+'//www2.infomart.co.jp'){
+                     $('iframe[name=footerframe]').height(e.data + 'px');
+                 }
+             }
+} catch(e) {}</script>
+
+</div>
+</div>
+
+<div class="ftr">
+<div class="ftr-nv clr" id="liNo">
+お客様番号：<span class="tx-b" id="lblNo">141235227</span>
+</div>
+
+<div class="small">
+
+<p class="credits"><span>© Infomart Corporation</span>
+</p>
+
+<p class="number">
+ <span id="writeNameLabel">WEBfood111-tyo</span>
+<span id="emviroment"></span></p>
+</div>
+</div>
+</footer>
+
+
+
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WSTBXK" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WSTBXK');</script>
+<!-- End Google Tag Manager -->
+
+</span>
+
+<a style="display:none;" id="iframeAjaxLinkCustomerInfo" href="#" onclick="var wcall=wicketAjaxGet('mypage_fb.page;JSESSIONID_TRADE=7567af1e05307044ec6cb64611d9?0-1.IBehaviorListener.0-detailPanel-iframeAjaxLinkCustomerInfo',function() { }.bind(this),function() { }.bind(this), function() {return Wicket.$('iframeAjaxLinkCustomerInfo') != null;}.bind(this));return !wcall;"></a>
+<a style="display:none;" id="iframeAjaxLinkMatchingAsp" href="#" onclick="var wcall=wicketAjaxGet('mypage_fb.page;JSESSIONID_TRADE=7567af1e05307044ec6cb64611d9?0-1.IBehaviorListener.0-detailPanel-iframeAjaxLinkMatchingAsp',function() { }.bind(this),function() { }.bind(this), function() {return Wicket.$('iframeAjaxLinkMatchingAsp') != null;}.bind(this));return !wcall;"></a>
+
+<script type="text/javascript" src="/web/jp/js/blockpage.js?1241"></script>
+<script type="text/javascript" src="/web/jp/include/common_functions.js?1241"></script>
+<script type="text/javascript" src="/web/jp/include/common_emp_op_represent.js?1241"></script>
+<script type="text/javascript" src="/web/jp/js/jquery-ui-1.8.18/jquery-ui.min.js?1241"></script>
+<script type="text/javascript" src="/web/jp/js/modal.js?1241"></script>
+<script type="text/javascript" src="/web/jp/js/base/modal.js?1241"></script>
+<script type="text/javascript" src="/web/jp/js/controls_common.js?1241"></script>
+<!--wicket:container wicket:id="commonJs"></wicket:container-->
+<script language="JavaScript" src="/web/jp/promotion/loader/common/js/promotion_modal.js?1241"></script>
+
+ 
+ <input type="hidden" name="detailPanel:hdnMemberKbn" value="" id="hdnMemberKbn" style="">
+
+
+<script type="text/javascript">
+/*<![CDATA[*/
+
+
+var recvDefine = false;
+function openPromotionModal(domain,url) {
+if(!recvDefine) {
+recvDefine = true;
+base.modal.recvMessage(domain, function(type, data){
+if(type == "close") {
+base.modal.xclose();
+}
+});
+}
+base.modal.xopen(domain + url);
+}
+
+$(window).load(function() {
+if ($("#ssoMdlLink").length) {
+//SSO促進モーダル表示
+openGuideModal();
+}else{
+// ESユーザログイン完了モーダルの表示
+openEsLoginFinishedModal();
+}
+
+// // #108556 マイページにメニュー機能促進用MDL表示
+// openFcmModal();
+
+// ページロード時に利用企業・担当者数が表示される場合
+if(document.getElementById("imcounter") !== null){
+
+var userAgent = window.navigator.userAgent.toLowerCase();
+var appVersion = window.navigator.appVersion.toLowerCase();
+
+// ブラウザーがIE8・7・6・5・4の場合は「詳細はこちら」リンクを非表示にする
+if(userAgent.indexOf("msie") !== -1){
+if((appVersion.indexOf("msie 8.") !== -1) || (appVersion.indexOf("msie 7.") !== -1) || (appVersion.indexOf("msie 6.") !== -1)
+|| (appVersion.indexOf("msie 5.") !== -1) || (appVersion.indexOf("msie 4.") !== -1)){
+document.getElementById("imcounter").style.display = "none";
+$("#myp-counter-btm").css("height","1px");
+}
+}
+}
+});
+
+/*]]>*/
+</script>
+</div>
+</div>
+</div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-dialog-fixed" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-1" style="display: none; z-index: 1000; outline: 0px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-1">&nbsp;</span><a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div style="position: relative; height: 600px;" class="ui-dialog-content ui-widget-content"><iframe id="promotion-frame" name="promotion-frame" src="/promotion/loader/promotion_settings_f.page" style="width: 105%; height: 105%;"></iframe></div></div>
+<script type="text/javascript" src="/web/jp/js/analytics.js"></script>
+
+
+
+<div style="display:none"><img src="/web/jp/images/loading.gif"></div><script type="text/javascript" id="" charset="">function hashclear(){location.hash&&location.hash.match(/(&|#)(_ga)=.+/)&&("replaceState"in history?history.replaceState("",document.title,location.pathname+location.search):window.location.hash="")}setTimeout("hashclear()",100);</script><div style="visibility: hidden; position: absolute; top: 0px;">S</div></body></html>

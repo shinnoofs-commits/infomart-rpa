@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Next.js build
+.next/
+*/.next/
+out/
+build/
+
+# Env & secrets
+.env*
+*/.env*
+
+# SQLite Database & lock files
+*.db
+*.db-*
+*/*.db
+*/*.db-*
+
+# Cloudflared binaries & logs
+*.exe
+*/*.exe
+*.log
+*/*.log
+
+# Downloads & temp files
+downloads/
+*/downloads/
+scratch/
+*/scratch/
+
+# Typescript cache
+*.tsbuildinfo
